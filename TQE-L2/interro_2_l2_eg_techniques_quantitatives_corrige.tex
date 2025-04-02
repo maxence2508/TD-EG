@@ -1,0 +1,256 @@
+\documentclass[a4paper,12pt]{article}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{lipsum} % Pour générer du faux texte. À retirer dans le document final.
+\usepackage{natbib}
+\usepackage{fancyhdr}
+\usepackage{tcolorbox}
+
+% Paramètres de la page
+\geometry{top=2.5cm, bottom=2.5cm, left=3cm, right=3cm}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{L2 EG TQE}
+\lhead{Corrigé interrogation 2}
+\rfoot{Page \thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{2pt}
+\renewcommand{\footrulewidth}{1pt}
+\setlength{\parindent}{0pt}
+\usepackage{xcolor}
+
+% Titre du document
+\title{Corrigé interrogation écrite 2}
+\author{L2 EG : Techniques Quantitatives pour l'Économie \\ Année 2024-2025}
+\date{21 Novembre 2024 \\
+Durée : 1h}
+
+% Macros
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\prob}{\mathbb{P}}
+\newcommand{\R}{\mathfrak{R}_0}
+\newcommand{\Hun}{H^1(\Omega)}
+\newcommand{\Ho}{H^1_0(\Omega)}
+\newcommand{\vois}{\mathring{\mathcal{U}}}
+
+\begin{document}
+
+\maketitle
+
+\textbf{Attention : Lorsqu'un calcul est demandé, il est attendu que les étapes permettant d'aboutir au résultat soient détaillées. Plus généralement, toute réponse doit être justifiée.} \\
+
+\textbf{Exercice 1} (Loi géométrique) \\
+
+\begin{tcolorbox}[colframe=black, colback=white, sharp corners, width=\textwidth, boxrule=0.5mm]
+\textbf{Rappels :}\\
+\begin{itemize}
+    \item On dit que la variable aléatoire $X$ suit la \textbf{loi géométrique} de paramètre $p \in ]0,1[$ et on note $X \sim \mathcal{G} (p)$ si $X$ prend ses valeurs dans $\mathbb{N}^*$ et si pour tout $k \in \mathbb{N}^*$, $\prob (X=k) = (1-p)^{k-1} p$. \\
+
+\item On rappelle l'\textbf{identité binomiale}. Pour $n_0 \in \mathbb{N}$ et $x \in ]-1,1[$, on a :
+$$\sum_{k=n_0}^{+\infty} \binom{k}{n_0} x^{k-n_0} = \frac{1}{(1-x)^{n_0+1}}$$
+
+\end{itemize}
+\end{tcolorbox}
+
+
+Soit $p=0,34$. Soit $X \sim \mathcal{G} (p)$. \\
+
+\textbf{1/} Calculer $\E (X)$. (2 pts) \\
+
+\textcolor{blue}{
+On écrit :
+\begin{align*}
+\E (X) &= \sum_{k=1}^{+ \infty} k \prob (X=k) \ \ \text{formule de transfert} \\
+& = \sum_{k=1}^{+\infty} k (1-p)^{k-1} p \\
+& = p \sum_{k=1}^{+ \infty} k (1-p)^{k-1}  
+\end{align*}
+En remarquant que $k = \binom{k}{1}$, il vient :
+\begin{align*}
+\E (X) &= p \sum_{k=1}^{+\infty} \binom{k}{1} (1-p)^{k-1} \\
+& = p \times \frac{1}{(1-(1-p))^{1+1}} \ \ \text{identité binomiale} \\
+& = \frac{p}{p^2} \\
+& = \frac{1}{p} \\
+& \boxed{= \frac{1}{0,34} }
+\end{align*}
+}
+
+\textbf{2/} Calculer $\E (X(X+1))$. (3 pts) \\
+
+\textcolor{blue}{
+On écrit :
+\begin{align*}
+\E (X(X+1)) & = \sum_{k=1}^{+\infty} k (k+1) \prob (X=k) \ \ \text{formule de transfert}  \\
+& = \sum_{k=1}^{+\infty} k(k+1) (1-p)^{k-1} p \\
+& =  p \sum_{k=1}^{+\infty} k(k+1) (1-p)^{k-1}
+\end{align*}
+En remarquant cette fois-ci que $\binom{k+1}{2} = \frac{(k+1)!}{2!(k-1)!} = \frac{k(k+1)}{2}$, il vient :
+\begin{align*}
+\E (X(X+1)) & = p \sum_{k=1}^{+\infty} 2 \binom{k+1}{2} (1-p)^{k-1} \\
+& = 2p \sum_{l=2}^{+\infty} \binom{l}{2} (1-p)^{(l-1)-1} \ \ \text{cdv} \ l=k+1 \\
+& = 2p \sum_{l=2}^{+\infty} \binom{l}{2} (1-p)^{l-2} \\
+& = 2p \frac{1}{(1-(1-p))^{2+1}} \ \ \text{identité binomiale} \\
+& = \frac{2p}{p^3} \\
+& = \frac{2}{p^2} \\
+& \boxed{= \frac{2}{0,34^2}}
+\end{align*}
+}
+
+\textbf{3/} Calculer $\mathbb{V} (X)$. (1 pt) \\
+
+\textcolor{blue}{
+Comme d'habitude, on écrit :
+\begin{align*}
+\mathbb{V} (X) & = \E (X^2) - \E(X)^2 \\
+& = \E(X(X+1)) - \E(X) - \E(X)^2 \\
+& = \frac{2}{p^2}-\frac{1}{p} -\frac{1}{p^2} \ \ \text{par 1/ et 2/} \\
+& = \frac{1}{p^2} - \frac{1}{p} \\
+& = \frac{1-p}{p^2} \\
+& \boxed{ = \frac{0,66}{0,34^2}}
+\end{align*}
+}
+
+\textbf{Exercice 2} (Loi normale) \\
+
+\begin{tcolorbox}[colframe=black, colback=white, sharp corners, width=\textwidth, boxrule=0.5mm]
+\textbf{Rappel} : valeur de l'intégrale de Gauss \\
+On a :
+$$\int_{- \infty}^{+ \infty} e^{-x^2} dx = \sqrt{\pi}$$
+\end{tcolorbox}
+Soit $f$ la fonction définie par $f(x)=Ae^{-\frac{x^2}{2}}$ pour $x \in \mathbb{R}$, avec $A>0$. \\
+
+\textbf{1/} Calculer la valeur de $A$ qui permet à $f$ d'être une densité de probabilité sur $\mathbb{R}$. (2 pts)\\
+\textit{Indication : On effectuera un changement de variable afin de se ramener à l'intégrale de Gauss présentée dans le rappel.} \\
+
+\textcolor{blue}{
+On a :
+\begin{align*}
+\int_{-\infty}^{+\infty} f(x) dx &= A \int_{-\infty}^{+\infty} e^{-\frac{x^2}{2}} dx \\
+&= A \int_{-\infty}^{+\infty} e^{-\left( \frac{x}{\sqrt{2}} \right)^2 } dx \\
+&= A \int_{-\infty}^{+\infty} e^{- u^2} \sqrt{2} du \ \ \text{cdv} \ u= x/ \sqrt{2}, \ du = dx/\sqrt{2} \\
+&= A \sqrt{2} \int_{-\infty}^{+\infty} e^{-u^2} du \\
+& = \sqrt{2 \pi} A \ \ \text{intégrale de Gauss}
+\end{align*}
+Ainsi $f$ est de masse $1$ si et seulement si $\boxed{A=1/\sqrt{2\pi}}$ et pour cette valeur de $A$, $f$ est bien positive sur $\mathbb{R}$. C'est donc une densité de probabilité sur $\mathbb{R}$.} \\
+
+\textbf{2/} Quelle est la parité de $f$ ? Quelle est la parité de la fonction $g$ définie par $g(x)=xf(x)$ pour $x \in \mathbb{R}$ ? (1 pt) \\
+
+\textcolor{blue}{
+Pour $x \in \mathbb{R}$, $f(-x)=Ae^{- \frac{(-x)^2}{2}} = Ae^{- \frac{x^2}{2}} =f(x) $ donc $f$ est paire et en utilisant la parité de $f$, on a $g(-x)=-xf(-x)=-xf(x)=-g(x)$ donc $g$ est impaire.} \\
+
+\textbf{3/} En déduire, \textbf{sans calcul}, la valeur de $\int_{-\infty}^{+ \infty} x f(x) dx$. (1 pt) \\
+
+\textcolor{blue}{
+Comme $g$ est impaire (et intégrable sur $\mathbb{R}$, c'est une précision nécessaire mais non attendue dans ce cours) et le domaine $]- \infty, + \infty[$ étant symétrique par rapport à $0$, on a $\boxed{\int_{-\infty}^{+ \infty} g(x) dx = 0}$. } \\
+
+\textbf{4/} Calculer $\int_{-\infty}^{+ \infty} x^2 f(x) dx$. \\
+\textit{Indication : On utilisera à cet effet une intégration par parties (IPP). On admettra que le terme "crochet" donné par cette IPP est nul.} (3 pts) \\
+
+\textcolor{blue}{
+On a :
+\begin{align*}
+\int_{-\infty}^{+\infty} x^2 f(x) \, dx &= A \int_{-\infty}^{+\infty} x^2 e^{-\frac{x^2}{2}} \, dx \\
+&= A \int_{-\infty}^{+\infty} x \times \left( x e^{-\frac{x^2}{2}} \right) \, dx \\
+&= A \int_{-\infty}^{+\infty} u(x) v'(x) \, dx
+\end{align*}
+avec \( u(x) = x \), \( v'(x) = x e^{-\frac{x^2}{2}} \), \( u'(x) = 1 \), \( v(x) = -e^{-\frac{x^2}{2}} \). \\
+Via une IPP, on obtient :
+\begin{align*}
+\int_{-\infty}^{+\infty} u(x)v'(x) \, dx &= \big[u(x)v(x)\big]_{-\infty}^{+\infty} - \int_{-\infty}^{+\infty} u'(x) v(x) \, dx \\
+&= \int_{-\infty}^{+\infty} e^{-\frac{x^2}{2}} \, dx \quad \text{crochet nul, admis}
+\end{align*}
+D'où, finalement :
+\begin{align*}
+\int_{-\infty}^{+\infty} x^2 f(x) \, dx &= A \int_{-\infty}^{+\infty} e^{-\frac{x^2}{2}} \, dx \\
+&= \int_{-\infty}^{+\infty} f(x) \, dx \\
+& \boxed{= 1} \quad \text{par choix de }A\text{, cf 1/}
+\end{align*}
+}
+
+\textbf{Exercice 3} (Marche aléatoire simple) \\
+Soit $\mu$ la distribution de probabilité donnée par :
+$$
+\forall x \in \mathbb{Z}, \ \ \mu(x) =
+\begin{cases} 
+1 & \text{si } x=0  \\
+0 & \text{sinon}
+\end{cases}
+$$
+
+Soit également $Q$ la matrice donnée par :
+$$
+\forall x,y \in \mathbb{Z}, \ \ Q(x, y) =
+\begin{cases} 
+\frac{1}{2} & \text{si } y = x + 1 \text{ ou } y = x - 1 \\
+0 & \text{sinon}
+\end{cases}
+$$
+Autrement dit, $Q$ est une matrice dont tous les coefficients sont nuls, exceptés les coefficients de la forme $Q(x,x+1)$ et $Q(x,x-1)$ qui valent $\frac{1}{2}$. \\
+
+\textbf{1/} Montrer que $Q$ est stochastique. (1 pt) \\
+
+\textcolor{blue}{
+Les coefficients de $Q$ sont bien à valeurs dans $[0,1]$ et pour $x \in \mathbb{Z}$, on a :
+\begin{align*}
+\sum_{y \in \mathbb{Z}} Q(x,y) &= Q(x,x+1)+Q(x-1,x) \ \ \text{les autres termes sont nuls} \\
+&= \frac{1}{2}+\frac{1}{2} \\
+&= 1 
+\end{align*}
+$Q$ est donc stochastique.
+} \\
+
+Soit $(X_n)$ la chaîne de Markov sur l'espace $E=\mathbb{Z}$ dont la loi initiale est $\mu$ et dont la matrice de transition est $Q$. \\
+
+\textbf{2/} Donner la loi de $X_0$ puis la loi de $X_1$. (3 pts)\\
+
+\textcolor{blue}{
+$X_0$ suit la loi $\mu$, c'est-à-dire 
+$
+\prob(X_0 = k) =
+\begin{cases} 
+1 & \text{si } k = 0 \\
+0 & \text{sinon}
+\end{cases}
+$ \ pour $k \in \mathbb{Z}$. \\
+Par le cours, $X_1$ suit la loi $\mu Q$. Donc pour $k \in \mathbb{Z}$,
+\begin{align*}
+\prob(X_1 = k) & = \mu Q(k) \\
+& = \sum_{l \in \mathbb{Z}} \mu(l) Q(l, k) \\
+& = \mu(k-1) Q(k-1, k) + \mu(k+1) Q(k+1, k) \quad \text{les autres termes sont nuls} \\
+& = \frac{1}{2} (\mu(k-1) + \mu(k+1)) \\
+& \boxed{= \begin{cases} 
+\frac{1}{2} & \text{si } k = -1 \text{ ou } 1 \\
+0 & \text{sinon}
+\end{cases}} \ \ \text{cf expression de } \mu \text{ pour s'en convaincre}
+\end{align*}
+}
+
+\textbf{Bonus} (Loi de Cauchy) (1 pt) \\
+\textit{À ne faire que si la totalité des exercices précédents ont été traités.} \\
+On définit sur $\mathbb{R}$ la fonction $f$ par : 
+$$\forall x \in \mathbb{R}, \ \ f(x)=\frac{A}{1+\left( \frac{x-x_0}{a}  \right)^2}$$ 
+avec $a, A >0$ et $x_0 \in \mathbb{R}$.\\
+
+Calculer $A$ de sorte que $f$ soit une densité de probabilité sur $\mathbb{R}$. L'expression de $A$ fera intervenir $a$. \\
+\textit{Indication : On admettra qu'une primitive de la fonction $x \mapsto \frac{1}{1+x^2}$ définie sur $\mathbb{R}$ est la fonction $\arctan$ et que $\arctan(x) \xrightarrow[x \to -\infty]{} -\frac{\pi}{2}$, $\arctan(x) \xrightarrow[x \to +\infty]{} \frac{\pi}{2}$}. \\
+
+\textcolor{blue}{
+$f$ est à valeurs positives et on a :
+\begin{align*}
+\int_{-\infty}^{+\infty} f(x) dx & =A \int_{-\infty}^{+\infty} \frac{dx}{1 + \left( \frac{x-x_0}{a} \right)^2 } \\
+& = A \int_{-\infty}^{+\infty} \frac{a du}{1+u^2} \ \ \text{cdv} \ u= \frac{x-x_0}{a} \\
+& = aA \int_{-\infty}^{+\infty} \frac{du}{1+u^2} \\
+&= aA [\arctan(u)]_{-\infty}^{+\infty} \ \ \text{cf indications de l'énoncé} \\
+& = aA (\pi/2 - (-\pi/2)) \ \ \text{idem} \\
+&\boxed{ = aA \pi}
+\end{align*}
+Ainsi, $f$ est une densité de probabilité si $aA \pi = 1$ i.e. $A = \frac{1}{a \pi}$.
+}
+
+\end{document}

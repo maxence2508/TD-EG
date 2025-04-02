@@ -1,0 +1,125 @@
+\documentclass[a4paper,12pt]{article}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{lipsum} % Pour générer du faux texte. À retirer dans le document final.
+\usepackage{natbib}
+\usepackage{fancyhdr}
+\usepackage{tcolorbox}
+
+% Paramètres de la page
+\geometry{top=2.5cm, bottom=2.5cm, left=3cm, right=3cm}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{L2 EG TQE}
+\lhead{Interrogation 2}
+\rfoot{Page \thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{2pt}
+\renewcommand{\footrulewidth}{1pt}
+\setlength{\parindent}{0pt}
+\usepackage{xcolor}
+
+% Titre du document
+\title{Interrogation écrite 2}
+\author{L2 EG : Techniques Quantitatives pour l'Économie \\ Année 2024-2025}
+\date{21 Novembre 2024 \\
+Durée : 1h}
+
+% Macros
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\prob}{\mathbb{P}}
+\newcommand{\R}{\mathfrak{R}_0}
+\newcommand{\Hun}{H^1(\Omega)}
+\newcommand{\Ho}{H^1_0(\Omega)}
+\newcommand{\vois}{\mathring{\mathcal{U}}}
+
+\begin{document}
+
+\maketitle
+
+\textbf{Attention : Lorsqu'un calcul est demandé, il est attendu que les étapes permettant d'aboutir au résultat soient détaillées. Plus généralement, toute réponse doit être justifiée.} \\
+
+\textbf{Exercice 1} (Loi géométrique) \\
+
+\begin{tcolorbox}[colframe=black, colback=white, sharp corners, width=\textwidth, boxrule=0.5mm]
+\textbf{Rappels :}\\
+\begin{itemize}
+    \item On dit que la variable aléatoire $X$ suit la \textbf{loi géométrique} de paramètre $p \in ]0,1[$ et on note $X \sim \mathcal{G} (p)$ si $X$ prend ses valeurs dans $\mathbb{N}^*$ et si pour tout $k \in \mathbb{N}^*$, $\prob (X=k) = (1-p)^{k-1} p$. \\
+
+\item On rappelle l'\textbf{identité binomiale}. Pour $n_0 \in \mathbb{N}$ et $x \in ]-1,1[$, on a :
+$$\sum_{k=n_0}^{+\infty} \binom{k}{n_0} x^{k-n_0} = \frac{1}{(1-x)^{n_0+1}}$$
+
+\end{itemize}
+\end{tcolorbox}
+
+
+Soit $p=0,34$. Soit $X \sim \mathcal{G} (p)$. \\
+
+\textbf{1/} Calculer $\E (X)$. \\
+
+\textbf{2/} Calculer $\E (X(X+1))$. \\
+
+\textbf{3/} Calculer $\mathbb{V} (X)$. \\
+
+\textbf{Exercice 2} (Loi normale) \\
+
+\begin{tcolorbox}[colframe=black, colback=white, sharp corners, width=\textwidth, boxrule=0.5mm]
+\textbf{Rappel} : valeur de l'intégrale de Gauss \\
+On a :
+$$\int_{- \infty}^{+ \infty} e^{-x^2} dx = \sqrt{\pi}$$
+\end{tcolorbox}
+Soit $f$ la fonction définie par $f(x)=Ae^{-\frac{x^2}{2}}$ pour $x \in \mathbb{R}$, avec $A>0$. 
+
+\textbf{1/} Calculer la valeur de $A$ qui permet à $f$ d'être une densité de probabilité sur $\mathbb{R}$. \\
+\textit{Indication : On effectuera un changement de variable afin de se ramener à l'intégrale de Gauss présentée dans le rappel.} \\
+
+\textbf{2/} Quelle est la parité de $f$ ? Quelle est la parité de la fonction $g$ définie par $g(x)=xf(x)$ pour $x \in \mathbb{R}$ ?\\
+
+\textbf{3/} En déduire, \textbf{sans calcul}, la valeur de $\int_{-\infty}^{+ \infty} x f(x) dx$. \\
+
+\textbf{4/} Calculer $\int_{-\infty}^{+ \infty} x^2 f(x) dx$. \\
+\textit{Indication : On utilisera à cet effet une intégration par parties (IPP). On admettra que le terme "crochet" donné par cette IPP est nul.} \\
+
+\textbf{Exercice 3} (Marche aléatoire simple) \\
+Soit $\mu$ la distribution de probabilité donnée par :
+$$
+\forall x \in \mathbb{Z}, \ \ \mu(x) =
+\begin{cases} 
+1 & \text{si } x=0  \\
+0 & \text{sinon}
+\end{cases}
+$$
+
+Soit également $Q$ la matrice donnée par :
+$$
+\forall x,y \in \mathbb{Z}, \ \ Q(x, y) =
+\begin{cases} 
+\frac{1}{2} & \text{si } y = x + 1 \text{ ou } y = x - 1 \\
+0 & \text{sinon}
+\end{cases}
+$$
+Autrement dit, $Q$ est une matrice dont tous les coefficients sont nuls, exceptés les coefficients de la forme $Q(x,x+1)$ et $Q(x,x-1)$ qui valent $\frac{1}{2}$. \\
+
+\textbf{1/} Montrer que $Q$ est stochastique. \\
+
+Soit $(X_n)$ la chaîne de Markov sur l'espace $E=\mathbb{Z}$ dont la loi initiale est $\mu$ et dont la matrice de transitions est $Q$. \\
+
+\textbf{2/} Donner la loi de $X_0$ puis la loi de $X_1$. \\
+
+\textbf{Bonus} (Loi de Cauchy) \\
+\textit{À ne faire que si la totalité des exercices précédents ont été traités.} \\
+On définit sur $\mathbb{R}$ la fonction $f$ par : 
+$$\forall x \in \mathbb{R}, \ \ f(x)=\frac{A}{1+\left( \frac{x-x_0}{a}  \right)^2}$$ 
+avec $a, A >0$ et $x_0 \in \mathbb{R}$.\\
+
+Calculer $A$ de sorte que $f$ soit une densité de probabilité sur $\mathbb{R}$. L'expression de $A$ fera intervenir $a$. \\
+\textit{Indication : On admettra qu'une primitive de la fonction $x \mapsto \frac{1}{1+x^2}$ définie sur $\mathbb{R}$ est la fonction $\arctan$ et que $\arctan(x) \xrightarrow[x \to -\infty]{} -\frac{\pi}{2}$, $\arctan(x) \xrightarrow[x \to +\infty]{} \frac{\pi}{2}$}.
+
+\end{document}

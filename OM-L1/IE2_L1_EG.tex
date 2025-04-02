@@ -1,0 +1,101 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb}
+\usepackage[left=2cm, right=2cm, top=3cm, bottom=3cm]{geometry}
+\usepackage{hyperref}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage[most]{tcolorbox}
+
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\prob}{\mathbb{P}}
+\newcommand{\f}{\mathcal{F}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{10pt}
+
+\title{Interrogation 2 \\
+Outils Mathématiques}
+\author{Durée : 1h}
+\date{10 Avril 2025}
+
+\begin{document}
+\maketitle
+
+\textbf{Attention :} Le sujet est long. Il n'est pas nécessaire de traiter tous les exercices pour obtenir la note maximale. Vous pouvez traiter les exercices dans l'ordre que vous souhaitez. Il est en revanche primordial que les calculs soient justes et que chaque affirmation soit justifiée. Commencez par traiter les exercices qui vous paraissent les plus simples.
+
+\section*{Exercice 1 (Loi géométrique)}
+
+\begin{tcolorbox}[colframe=gray!50, colback=white, title=Rappels, fonttitle=\bfseries,
+  boxrule=0.5pt, arc=0mm]
+\begin{itemize}
+    \item On dit que la variable aléatoire $X$ suit la \textbf{loi géométrique} de paramètre $p \in ]0,1[$ et on note $X \sim \mathcal{G}(p)$ si $X$ prend ses valeurs dans $\mathbb{N}^*$ et si pour tout $k \in \mathbb{N}^*$, 
+    \[
+    \prob(X = k) = (1-p)^{k-1} p.
+    \]
+
+    \item On rappelle l'\textbf{identité binomiale}. Pour $n_0 \in \mathbb{N}$ et $x \in ]-1,1[$, on a :
+    \[
+    \sum_{k=n_0}^{+\infty} \binom{k}{n_0} x^{k - n_0} = \frac{1}{(1 - x)^{n_0 + 1}}.
+    \]
+\end{itemize}
+\end{tcolorbox}
+
+Soit $p=0{,}34$. Soit $X \sim \mathcal{G}(p)$. 
+
+\textbf{1.} Calculer $\E (X)$. 
+
+\textbf{2.} Calculer $\E (X(X+1))$. 
+
+\textbf{3.} Calculer $\mathbb{V} (X)$. 
+
+\section*{Exercice 2 (Intégrales en vrac)}
+
+Calculer les intégrales suivantes.
+
+\textbf{1.} $I=\int_0^1 x \ln (x+1) dx$ \ \ \ \ \ \textbf{2.} $J=\int_0^{\frac{\pi}{7}} \sin (7x) dx$ \ \ \ \ \ \textbf{3.} $K = \int_{- \infty}^{+ \infty} 2x \exp{-(x^2(1+x^2))}$
+
+\textbf{4.} $L=\int_0^1 x \exp{(-x^2/2) x} dx$ \ \ \ \ \ \textbf{5.} $M=\int_0^{\pi} x \cos(x) dx$ \ \ \ \ \ \textbf{6.} $N = \int_0^1 x \exp{(x)} dx$
+
+\section*{Exercice 3 (Équations différentielles en vrac)}
+
+Résoudre les équations différentielles suivantes.
+
+\textbf{1.} $y'' -6y' +9y = 0$ avec les conditions initiales $y(0)=2$, $y'(0)=2$.
+
+\textbf{2.} $y'' -5y' +6y = 0$ avec les conditions initiales $y(0)=1$, $y'(0)=2$.
+
+\textbf{3.} $y' = 10x^5 y + x^3 e^{x^2}$ avec la condition initiale $y(0)=1$.
+
+\section*{Exercice 4 (Régression linéaire)}
+
+Soient $X$ et $Y$ deux variables aléatoires telles que $\E (X)=5$, $\E(X^2) = 7$, $\E (Y)=2$ et $\E (XY) =5$. 
+
+\textbf{1.} Calculer la droite de régression linéaire de $Y$ par rapport à $X$.
+
+\textbf{2.} Calculer la droite de régression linéaire de $X$ par rapport à $Y$.
+
+\section*{Exercice 5 (Diagonalisation)}
+
+On pose $A = \begin{pmatrix}
+0 & 1 & -1 \\
+1 & 1 & 0 \\
+-1 & 0 & 1
+\end{pmatrix}$
+
+\textbf{1.} Calculer les valeurs propres de la matrice $A$.
+
+\textbf{2.} Donner une base de chacun des sous-espaces propres de la matrice $A$.
+
+\textbf{3.} La matrice $A$ est-elle diagonalisable ? Justifier.
+
+\section*{Exercice 6 (Loi de Cauchy)}
+On définit sur $\mathbb{R}$ la fonction $f$ par : 
+$$\forall x \in \mathbb{R}, \ \ f(x)=\frac{A}{1+\left( \frac{x-x_0}{a}  \right)^2}$$ 
+avec $a, A >0$ et $x_0 \in \mathbb{R}$.\\
+
+Calculer $A$ de sorte que $\int_{-\infty}^{+ \infty} f(x) dx = 1$. L'expression de $A$ fera intervenir $a$. \\
+\textit{Indication : On admettra qu'une primitive de la fonction $x \mapsto \frac{1}{1+x^2}$ définie sur $\mathbb{R}$ est la fonction $\arctan$ et que $\arctan(x) \xrightarrow[x \to -\infty]{} -\frac{\pi}{2}$, $\arctan(x) \xrightarrow[x \to +\infty]{} \frac{\pi}{2}$}.
+
+
+\end{document}
