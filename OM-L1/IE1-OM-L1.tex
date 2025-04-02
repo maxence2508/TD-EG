@@ -1,0 +1,553 @@
+\documentclass[a4paper,12pt]{article}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{lipsum} % Pour générer du faux texte. À retirer dans le document final.
+\usepackage{natbib}
+\usepackage{bbm}
+\usepackage{titlesec}
+\usepackage{tcolorbox}
+
+% Paramètres de la page
+\geometry{top=2cm, bottom=2cm, left=2.5cm, right=2.5cm, footskip=1cm}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Outils Mathématiques : Interrogation 1}
+\cfoot{\thepage} % Numéro de page au milieu du pied de page
+\renewcommand{\headrulewidth}{2pt}
+\renewcommand{\footrulewidth}{0pt} % Pas de ligne en bas
+\setlength{\parindent}{0pt}
+
+% Mise en page de la première page
+\fancypagestyle{plain}{
+  \fancyhf{} % Supprime les en-têtes et pieds par défaut
+  \cfoot{\thepage} % Numéro de page au milieu
+  \renewcommand{\headrulewidth}{0pt} % Pas de ligne d'en-tête
+  \renewcommand{\footrulewidth}{0pt} % Pas de ligne en bas
+}
+
+% Titre du document
+\title{Outils Mathématiques \\
+Année 2024-2025}
+\author{Interrogation 1}
+\date{6 Mars 2025 \\
+Durée : 1h}
+
+% Macros
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\prob}{\mathbb{P}}
+\newcommand{\R}{\mathfrak{R}_0}
+\newcommand{\Hun}{H^1(\Omega)}
+\newcommand{\Ho}{H^1_0(\Omega)}
+\newcommand{\vois}{\mathring{\mathcal{U}}}
+\newcommand{\ind}{\mathbbm{1}}
+\newcommand{\f}{\mathcal{F}}
+\newcommand{\n}{\mathbb{N}}
+\newcommand{\m}{\mathcal{M}}
+\newcommand{\norm}{\mathcal{N}}
+\newcommand{\sme}{\mathcal{E}}
+
+% Chargement de hyperref avec les options personnalisées pour les cadres rouges
+\usepackage[
+    colorlinks=false,         % Pas de lien coloré
+    linkbordercolor={1 0 0},  % Cadre rouge autour des liens
+    pdfborder={0 0 1}         % Taille du cadre autour des liens
+]{hyperref}
+
+% Supprimer le décalage des sous-sections et masquer le numéro
+\titleformat{\subsection}[hang]{\normalfont\bfseries}{}{0pt}{}
+
+\begin{document}
+
+\maketitle
+
+\textbf{Attention : Lorsqu'un calcul est demandé, il est attendu que les étapes permettant d'aboutir au résultat soient détaillées. Plus généralement, toute réponse doit être justifiée.} \\
+
+
+\textbf{Exercice 1} (Inversion matricielle) \\
+
+\textbf{1/} Soient \( A = \begin{pmatrix}
+2 & -2 \\
+1 & -2 \\
+\end{pmatrix} \) et \( B = \begin{pmatrix}
+1 & 2 & -2 \\
+0 & 1 & -2 \\
+1 & 1 & 1
+\end{pmatrix} \). \\
+
+Inverser les matrices $A$ et $B$ en appliquant la méthode du pivot. \\
+
+\textcolor{blue}{ On applique l'algorithme du pivot de Gauss. \\
+Commençons par la matrice $A$.
+\[ M_0=
+\begin{pmatrix}
+\boxed{2} & -2 & | & 1 & 0 \\
+1 & -2 & | & 0 & 1
+\end{pmatrix} 
+\begin{array}{c} \\
+L_2' = 2L_2 - L_1
+\end{array}
+\]
+\[
+\begin{aligned}
+2L_2 &= \begin{pmatrix}
+2 & -4 & | & 0 & 2
+\end{pmatrix} \\
+-L_1 &= \begin{pmatrix}
+-2 & 2 & | & -1 & 0
+\end{pmatrix} \\
+L_2' &= \begin{pmatrix}
+0 & -2 & | & -1 & 2
+\end{pmatrix}
+\end{aligned}
+\]
+\[ M_1=
+\begin{pmatrix}
+2 & -2 & | & 1 & 0 \\
+0 & \boxed{-2} & | & -1 & 2
+\end{pmatrix} 
+\begin{array}{c} L_1' = L_1-L_2 
+\\
+\\
+\end{array}
+\]
+\[
+\begin{aligned}
+L_1 &= \begin{pmatrix}
+2 & -2 & | & 1 & 0 
+\end{pmatrix} \\
+-L_2 &= \begin{pmatrix}
+0 & 2 & | & 1 & -2
+\end{pmatrix} \\
+L_1' &= \begin{pmatrix}
+2 & 0 & | & 2 & -2 
+\end{pmatrix}
+\end{aligned}
+\]
+\[ M_2=
+\begin{pmatrix}
+2 & 0 & | & 2 & -2  \\
+0 & -2 & | & -1 & 2
+\end{pmatrix} 
+\begin{array}{c} L_1' = \frac{1}{2} L_1 \\
+L_2'= \frac{-1}{2} L_2
+\end{array}
+\]
+\[ M_3=
+\begin{pmatrix}
+1 & 0 & | & 1 & -1  \\
+0 & 1 & | & \frac{1}{2} & -1
+\end{pmatrix}
+\]
+Donc $A$ est inversible et son inverse est \( A^{-1} = \begin{pmatrix}
+1 & -1 \\
+\frac{1}{2} & -1 \\
+\end{pmatrix} \).
+}
+
+\textcolor{blue}{En ce qui concerne la matrice $B$, on a :
+\[ M_0=
+\begin{pmatrix}
+\boxed{1} & 2 & -2 & | & 1 & 0 & 0 \\
+0 & 1 & -2 & | & 0 & 1 & 0 \\
+1 & 1 & 1 & | & 0 & 0 & 1
+\end{pmatrix} 
+\begin{array}{c} \\
+\\
+L_3' = L_3 - L_1
+\end{array}
+\]
+\[
+\begin{aligned}
+L_3 &= \begin{pmatrix}
+1 & 1 & 1 & | & 0 & 0 & 1
+\end{pmatrix} \\
+-L_1 &= \begin{pmatrix}
+-1 & -2 & 2 & | & -1 & 0 & 0
+\end{pmatrix} \\
+L_3' &= \begin{pmatrix}
+0 & -1 & 3 & | & -1 & 0 & 1
+\end{pmatrix}
+\end{aligned}
+\]
+\[ M_1=
+\begin{pmatrix}
+1 & 2 & -2 & | & 1 & 0 & 0 \\
+0 & \boxed{1} & -2 & | & 0 & 1 & 0 \\
+0 & -1 & 3 & | & -1 & 0 & 1
+\end{pmatrix} 
+\begin{array}{c} L_1' = L_1-2L_2 \\
+ \\
+L_3' = L_3 + L_2
+\end{array}
+\]
+\[
+\begin{aligned}
+L_3 &= \begin{pmatrix}
+0 & -1 & 3 & | & -1 & 0 & 1
+\end{pmatrix} \\
+L_2 &= \begin{pmatrix}
+0 & 1 & -2 & | & 0 & 1 & 0
+\end{pmatrix} \\
+L_3' &= \begin{pmatrix}
+0 & 0 & 1 & | & -1 & 1 & 1
+\end{pmatrix}
+\end{aligned}
+\]
+\[
+\begin{aligned}
+L_1 &= \begin{pmatrix}
+1 & 2 & -2 & | & 1 & 0 & 0
+\end{pmatrix} \\
+-2L_2 &= \begin{pmatrix}
+0 & -2 & 4 & | & 0 & -2 & 0
+\end{pmatrix} \\
+L_1' &= \begin{pmatrix}
+1 & 0 & 2 & | & 1 & -2 & 0
+\end{pmatrix}
+\end{aligned}
+\]
+\[ M_2 = 
+\begin{pmatrix}
+1 & 0 & 2 & | & 1 & -2 & 0 \\
+0 & 1 & -2 & | & 0 & 1 & 0 \\
+0 & 0 & \boxed{1} & | & -1 & 1 & 1
+\end{pmatrix} 
+\begin{array}{c} L_1' = L_1-2L_3 \\
+L_2' = L_2+2L_3 \\ \\
+\end{array}
+\]
+\[
+\begin{aligned}
+L_1 &= \begin{pmatrix}
+1 & 0 & 2 & | & 1 & -2 & 0
+\end{pmatrix} \\
+-2L_3 &= \begin{pmatrix}
+0 & 0 & -2 & | & 2 & -2 & -2
+\end{pmatrix} \\
+L_1' &= \begin{pmatrix}
+1 & 0 & 0 & | & 3 & -4 & -2
+\end{pmatrix}
+\end{aligned}
+\]
+\[
+\begin{aligned}
+L_2 &= \begin{pmatrix}
+0 & 1 & -2 & | & 0 & 1 & 0
+\end{pmatrix} \\
+2L_3 &= \begin{pmatrix}
+0 & 0 & 2 & | & -2 & 2 & 2
+\end{pmatrix} \\
+L_2' &= \begin{pmatrix}
+0 & 1 & 0 & | & -2 & 3 & 2
+\end{pmatrix}
+\end{aligned}
+\]
+\[ M_3 = 
+\begin{pmatrix}
+1 & 0 & 0 & | & 3 & -4 & -2 \\
+0 & 1 & 0 & | & -2 & 3 & 2 \\
+0 & 0 & 1 & | & -1 & 1 & 1
+\end{pmatrix} 
+\]
+Donc $B$ est inversible et son inverse est \( B^{-1} = \begin{pmatrix}
+3 & -4 & -2 \\
+-2 & 3 & 2 \\
+-1 & 1 & 1
+\end{pmatrix} \).
+}
+
+\textbf{2/} Soit \( C = \begin{pmatrix}
+0 & 1 & -1 \\
+-1 & 2 & -1 \\
+1 & -1 & 2
+\end{pmatrix} \).  \\
+
+\textbf{a)} Calculer $C^2$ puis $C^2-3C$. \\
+
+\textcolor{blue}{On a 
+\( C^2 = \begin{pmatrix}
+-2 & 3 & -3 \\
+-3 & 4 & -3 \\
+3 & -3 & 4
+\end{pmatrix} \) et $C^2-3C=-2I_3$.} \\
+
+\textbf{b)} En déduire que $C$ est inversible et donner l'expression de son inverse $C^{-1}$. \\
+
+\textcolor{blue}{Ainsi, on a $\frac{-1}{2} (C-3I_3)C = I_3$. \\
+Donc $C$ est inversible et $C^{-1} = \frac{-1}{2} (C-3I_3) =$ \( \begin{pmatrix}
+\frac{3}{2} & \frac{-1}{2} & \frac{1}{2} \\
+\frac{1}{2} & \frac{1}{2} & \frac{1}{2} \\
+\frac{-1}{2} & \frac{1}{2} & \frac{1}{2}
+\end{pmatrix} \)} \\
+
+\textbf{Exercice 2} (Diagonalisation) \\
+
+Soit \( A = \begin{pmatrix}
+3 & 0 & 0 \\
+2 & 2 & 0 \\
+4 & 0 & 1
+\end{pmatrix} \).\\
+\textbf{1/} Calculer le polynôme caractéristique de la matrice $A$ en le laissant sous forme factorisée. En déduire l'ensemble des valeurs propres de la matrice $A$. \\
+
+\textcolor{blue}{Le polynôme caractéristique de $A$ est $P_A(X)=(X-1)(X-2)(X-3)$. L'ensemble des valeurs propres de $A$ est donc $\{1,2,3\}$.} \\
+
+\textbf{2/} Trouver une base de chacun des sous-espaces propres de la matrice $A$. \\
+
+\textcolor{blue}{
+\underline{Espace propre associé à la valeur propre $\lambda = 3$.} \\ \\
+Soit $X =
+\begin{pmatrix}
+x \\
+y \\
+z
+\end{pmatrix}
+$. $AX = 3X$ si et seulement si :
+\[
+\begin{cases}
+3x = 3x \\
+2x + 2y = 3y \\
+4x + z = 3z
+\end{cases}
+\quad \text{ssi} \quad
+\begin{cases}
+2x + 2y = 3y \\
+4x + z = 3z
+\end{cases}
+\quad \text{ssi} \quad
+\begin{cases}
+y = 2x \\
+2z = 4x
+\end{cases}
+\quad \text{ssi} \quad
+\begin{cases}
+y = 2x \\
+z = 2x
+\end{cases}
+\]
+Ainsi, $AX = 3X$ si et seulement s'il existe $x \in \mathbb{R}$ tel que $X =
+\begin{pmatrix}
+x \\
+2x \\
+2x
+\end{pmatrix} = x e_1
+$ avec $e_1 =
+\begin{pmatrix}
+1 \\
+2 \\
+2
+\end{pmatrix}$.
+Donc $(e_1)$ est base de $E_3(A)$.}
+\\
+\textcolor{blue}{
+\underline{Espace propre associé à la valeur propre $\lambda = 2$.} \\ \\
+Soit $X =
+\begin{pmatrix}
+x \\
+y \\
+z
+\end{pmatrix}
+$. $AX = 2X$ si et seulement si :
+\[
+\begin{cases}
+3x = 2x \\
+2x + 2y = 2y \\
+4x + z = 2z
+\end{cases}
+\quad \text{ssi} \quad
+\begin{cases}
+x = 0 \\
+2y = 2y \\
+z = 2z
+\end{cases}
+\quad \text{ssi} \quad
+\begin{cases}
+x = 0 \\
+z = 0
+\end{cases}
+\]
+Ainsi, $AX = 2X$ si et seulement s'il existe $y \in \mathbb{R}$ tel que $X =
+\begin{pmatrix}
+0 \\
+y \\
+0
+\end{pmatrix} = y e_2
+$ avec $e_2 =
+\begin{pmatrix}
+0 \\
+1 \\
+0
+\end{pmatrix}$.
+Donc $(e_2)$ est base de $E_2(A)$.} \\
+
+\textcolor{blue}{ 
+\underline{Espace propre associé à la valeur propre $\lambda = 1$.} \\ \\
+Soit $X =
+\begin{pmatrix}
+x \\
+y \\
+z
+\end{pmatrix}
+$. $AX=X$ si et seulement si :
+\[
+\begin{cases}
+3x = x \\
+2x + 2y = y \\
+4x + z = z
+\end{cases}
+\quad \text{ssi} \quad
+\begin{cases}
+x = 0 \\
+2y = y \\
+z = z
+\end{cases}
+\quad \text{ssi} \quad
+\begin{cases}
+x = 0 \\
+y = 0
+\end{cases}
+\]
+Ainsi, $AX=X$ si et seulement s'il existe $z \in \mathbb{R}$ tel que $X =
+\begin{pmatrix}
+0 \\
+0 \\
+z
+\end{pmatrix} = z e_3
+$ avec $e_3 =
+\begin{pmatrix}
+0 \\
+0 \\
+1
+\end{pmatrix}$. $(e_3)$ est base de $E_1(A)$.
+} \\
+
+\textbf{3/} La matrice $A$ est-elle diagonalisable ? Justifier. \\
+
+\textcolor{blue}{La famille $\boxed{\underline{b}'=(e_1,e_2,e_3)}$ est une base de vecteurs propres de $A$. La matrice $A$ est donc diagonalisable.} \\
+
+\textbf{Exercice 3} (Loi binomiale) \\
+
+\begin{tcolorbox}[colframe=black, colback=white, sharp corners, width=\textwidth, boxrule=0.5mm]
+\textbf{Rappel :}\\
+\begin{itemize}
+    \item On dit que la variable aléatoire $X$ suit la \textbf{loi binomiale} de paramètres $n \in \n^*$, $p \in \ ]0,1[$ et on note $X \sim \mathcal{B} (n,p)$ si $X$ prend ses valeurs dans $\{0,1,...,n\}$ et si pour tout $k \in \{0,1,...,n\}$, $\prob (X=k) = \binom{n}{k} p^k (1-p)^{n-k}$. \\
+
+\item On rappelle la \textbf{formule du capitaine}. Pour $1 \leq k \leq n$, on a :
+$$k \binom{n}{k} = n \binom{n-1}{k-1}$$
+\end{itemize}
+\end{tcolorbox}
+
+Soit $p \in \ ]0,1[$ et soit $X$ une variable aléatoire suivant la loi Binomiale $\mathcal{B} (5; p)$. \\
+
+\textbf{1/} Calculer $\E (X)$. \\
+\textcolor{blue}{
+On a :
+\begin{align*}
+\E(X) &=  \sum_{k=0}^n k \prob (X=k) \quad \text{formule de transfert} \\
+&= \sum_{k=1}^n k \binom{n}{k} p^k (1-p)^{n-k} \quad \text{1er terme nul} \\
+&= n \sum_{k=1}^n \binom{n-1}{k-1} p^k (1-p)^{n-k} \quad \text{formule du capitaine}  \\
+&= n \sum_{l=0}^{n-1} \binom{n-1}{l} p^{l+1} (1-p)^{n-(l+1)} \quad \text{cdv } l=k-1 \\
+&= np \sum_{l=0}^{n-1} \binom{n-1}{l} p^l (1-p)^{(n-1)-l} \\
+&= np \left( p + (1-p) \right)^{n-1} \quad \text{binôme de Newton} \\
+&= np \\
+& = 5p
+\end{align*}
+}
+
+\textbf{2/} Calculer $\E (X(X-1))$. \\
+
+\textcolor{blue}{
+Par ailleurs :
+\begin{align*}
+\E(X(X-1)) &= \sum_{k=0}^n k(k-1) \prob(X=k) \\
+&= \sum_{k=2}^n k(k-1) \prob(X=k) \quad \text{on retire les termes nuls} \\
+&= \sum_{k=2}^n k(k-1) \binom{n}{k} p^k (1-p)^{n-k}
+\end{align*}
+}
+
+\textcolor{blue}{
+D'après la formule du capitaine (que l'on applique deux fois), on a pour $2 \leq k \leq n$ :
+\[
+k(k-1) \binom{n}{k} = n(k-1) \binom{n-1}{k-1} = n(n-1) \binom{n-2}{k-2}
+\]
+}
+
+\textcolor{blue}{
+Si bien que :
+\begin{align*}
+\E(X(X-1)) &= n(n-1) \sum_{k=2}^n \binom{n-2}{k-2} p^{k}(1-p)^{n-k} \\
+&= n(n-1) \sum_{l=0}^{n-2} \binom{n-2}{l} p^{l+2} (1-p)^{n-(l+2)} \quad \text{cdv } l=k-2 \\
+&= p^2 n(n-1) \sum_{l=0}^{n-2} \binom{n-2}{l} p^{l} (1-p)^{(n-2)-l} \\
+&= p^2 n(n-1) \left( p + (1-p) \right)^{n-2} \quad \text{binôme de Newton} \\
+&= p^2 n(n-1) \\
+& = 20p^2
+\end{align*}
+}
+
+\textbf{3/} Calculer $\mathbb{V} (X)$. \\
+
+\textcolor{blue}{
+En écrivant $X^2 = X(X-1) + X$, on a :
+\begin{align*}
+\mathbb{V}(X) &= \E(X^2) - \E(X)^2 \\
+&= \E(X(X-1) + X) - \E(X)^2 \\
+&= \E(X(X-1)) + \E(X) - \E(X)^2 \quad \text{linéarité de l'espérance} \\
+&= p^2 n(n-1) + np - n^2 p^2 \\
+&= n^2 p^2 - np^2 + np - n^2 p^2 \\
+&= -np^2 + np \\
+&= np(1-p) \\
+&\boxed{= 5p(1-p)}
+\end{align*}
+}
+
+\textbf{4/} Pour quelle valeur de $p$ la variance de $X$ est-elle maximale ? \\
+
+\textcolor{blue}{La variance de $X$ s'écrit $\mathbb{V} (X) = -5p^2 +5p$. Il s'agit d'une fonction polynomiale en $p$ de degré $2$, qui atteint son maximum sur $]0,1[$ en $p=\frac{1}{2}$.} \\
+
+\textbf{Bonus} (Loi uniforme) \\
+\textit{À ne faire que si la totalité des exercices précédents ont été traités.}
+
+\begin{tcolorbox}[colframe=black, colback=white, sharp corners, width=\textwidth, boxrule=0.5mm]
+\textbf{Définition :}\\
+Soit $n \in \n^*$. On dit que la variable aléatoire $X$ suit la $\textbf{loi uniforme}$ sur $\{1,2,...,n\}$ et on note $X \sim \mathcal{U} (\{1,2,...,n\})$ si $X$ prend ses valeurs dans $\{1,2,...,n\}$ et si pour tout $k \in \{1,2,...,n\}$, $\prob (X=k) = 1/n$. 
+\end{tcolorbox}
+
+On pose $n=19$. Soit $X \sim \mathcal{U} (\{1,2,...,n \})$ . \\
+
+\textbf{1/} Calculer $\E (X)$. \\ 
+
+\textcolor{blue}{On a :
+\begin{align*}
+\E (X) & = \sum_{k=1}^n k \prob (X=k) \\
+& = \sum_{k=1}^n \frac{k}{n} \\
+& = \frac{1}{n} \frac{n(n+1)}{2} \ \ \text{somme des premiers termes d'une suite arithmétique} \\
+& = \frac{n+1}{2} \\
+& = 10
+\end{align*}}
+
+\textbf{2/} On admet que $\sum_{k=1}^n k^2= \frac{n(n+1)(2n+1)}{6}$. Calculer $\mathbb{V}(X)$. \\
+
+\textcolor{blue}{
+On a d'abord :
+\begin{align*}
+\E(X^2) & = \sum_{k=1}^n k^2 \prob (X=k) \\
+& = \sum_{k=1}^n \frac{k^2}{n} \\
+& = \frac{1}{n} \frac{n(n+1)(2n+1)}{6} \ \ \text{indication de l'énoncé} \\
+& = \frac{(n+1)(2n+1)}{6}
+\end{align*}
+Puis :
+\begin{align*}
+\mathbb{V} (X) & = \E (X^2) - \E(X)^2 \\
+& = \frac{(n+1)(2n+1)}{6} - \frac{(n+1)^2}{4} \ \ \text{par ce qui précède} \\
+& = \frac{n^2-1}{12} \ \ \text{en mettant au même dénominateur} \\
+& = 30
+\end{align*}}
+
+\end{document}

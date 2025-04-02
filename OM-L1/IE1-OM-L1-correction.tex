@@ -1,0 +1,152 @@
+\documentclass[a4paper,12pt]{article}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{lipsum} % Pour générer du faux texte. À retirer dans le document final.
+\usepackage{natbib}
+\usepackage{bbm}
+\usepackage{titlesec}
+\usepackage{tcolorbox}
+
+% Paramètres de la page
+\geometry{top=2cm, bottom=2cm, left=2.5cm, right=2.5cm, footskip=1cm}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Outils Mathématiques : Interrogation 1}
+\cfoot{\thepage} % Numéro de page au milieu du pied de page
+\renewcommand{\headrulewidth}{2pt}
+\renewcommand{\footrulewidth}{0pt} % Pas de ligne en bas
+\setlength{\parindent}{0pt}
+
+% Mise en page de la première page
+\fancypagestyle{plain}{
+  \fancyhf{} % Supprime les en-têtes et pieds par défaut
+  \cfoot{\thepage} % Numéro de page au milieu
+  \renewcommand{\headrulewidth}{0pt} % Pas de ligne d'en-tête
+  \renewcommand{\footrulewidth}{0pt} % Pas de ligne en bas
+}
+
+% Titre du document
+\title{Outils Mathématiques \\
+Année 2024-2025}
+\author{Interrogation 1}
+\date{6 Mars 2025 \\
+Durée : 1h}
+
+% Macros
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\prob}{\mathbb{P}}
+\newcommand{\R}{\mathfrak{R}_0}
+\newcommand{\Hun}{H^1(\Omega)}
+\newcommand{\Ho}{H^1_0(\Omega)}
+\newcommand{\vois}{\mathring{\mathcal{U}}}
+\newcommand{\ind}{\mathbbm{1}}
+\newcommand{\f}{\mathcal{F}}
+\newcommand{\n}{\mathbb{N}}
+\newcommand{\m}{\mathcal{M}}
+\newcommand{\norm}{\mathcal{N}}
+\newcommand{\sme}{\mathcal{E}}
+
+% Chargement de hyperref avec les options personnalisées pour les cadres rouges
+\usepackage[
+    colorlinks=false,         % Pas de lien coloré
+    linkbordercolor={1 0 0},  % Cadre rouge autour des liens
+    pdfborder={0 0 1}         % Taille du cadre autour des liens
+]{hyperref}
+
+% Supprimer le décalage des sous-sections et masquer le numéro
+\titleformat{\subsection}[hang]{\normalfont\bfseries}{}{0pt}{}
+
+\begin{document}
+
+\maketitle
+
+\textbf{Attention : Lorsqu'un calcul est demandé, il est attendu que les étapes permettant d'aboutir au résultat soient détaillées. Plus généralement, toute réponse doit être justifiée.} \\
+
+
+\textbf{Exercice 1} (Inversion matricielle) \\
+
+\textbf{1/} Soient \( A = \begin{pmatrix}
+2 & -2 \\
+1 & -2 \\
+\end{pmatrix} \) et \( B = \begin{pmatrix}
+1 & 2 & -2 \\
+0 & 1 & -2 \\
+1 & 1 & 1
+\end{pmatrix} \). \\
+
+Inverser les matrices $A$ et $B$ en appliquant la méthode du pivot. \\
+
+\textbf{2/} Soit \( C = \begin{pmatrix}
+0 & 1 & -1 \\
+-1 & 2 & -1 \\
+1 & -1 & 2
+\end{pmatrix} \).  \\
+
+\textbf{a)} Calculer $C^2$ puis $C^2-3C$. \\
+
+\textbf{b)} En déduire que $C$ est inversible et donner l'expression de son inverse $C^{-1}$. \\
+
+\textbf{Exercice 2} (Diagonalisation) \\
+
+Soit \( A = \begin{pmatrix}
+3 & 0 & 0 \\
+2 & 2 & 0 \\
+4 & 0 & 1
+\end{pmatrix} \).\\
+
+\textbf{1/} Calculer le polynôme caractéristique de la matrice $A$ en le laissant sous forme factorisée. En déduire l'ensemble des valeurs propres de la matrice $A$. \\
+
+\textbf{2/} Trouver une base de chacun des sous-espaces propres de la matrice $A$. \\
+
+\textbf{3/} La matrice $A$ est-elle diagonalisable ? Justifier. \\
+
+\vfill
+\begin{flushright}
+\textbf{Tourner la page S.V.P.}
+\end{flushright}
+
+\textbf{Exercice 3} (Loi binomiale) \\
+
+\begin{tcolorbox}[colframe=black, colback=white, sharp corners, width=\textwidth, boxrule=0.5mm]
+\textbf{Rappel :}\\
+\begin{itemize}
+    \item On dit que la variable aléatoire $X$ suit la \textbf{loi binomiale} de paramètres $n \in \n^*$, $p \in \ ]0,1[$ et on note $X \sim \mathcal{B} (n,p)$ si $X$ prend ses valeurs dans $\{0,1,...,n\}$ et si pour tout $k \in \{0,1,...,n\}$, $\prob (X=k) = \binom{n}{k} p^k (1-p)^{n-k}$. \\
+
+\item On rappelle la \textbf{formule du capitaine}. Pour $1 \leq k \leq n$, on a :
+$$k \binom{n}{k} = n \binom{n-1}{k-1}$$
+\end{itemize}
+\end{tcolorbox}
+
+Soit $p \in \ ]0,1[$ et soit $X$ une variable aléatoire suivant la loi Binomiale $\mathcal{B} (5; p)$. \\
+
+\textbf{1/} Calculer $\E (X)$. \\
+
+\textbf{2/} Calculer $\E (X(X-1))$. \\
+
+\textbf{3/} Calculer $\mathbb{V} (X)$. \\
+
+\textbf{4/} Pour quelle valeur de $p$ la variance de $X$ est-elle maximale ? \\
+
+\textbf{Bonus} (Loi uniforme) \\
+\textit{À ne faire que si la totalité des exercices précédents ont été traités.}
+
+\begin{tcolorbox}[colframe=black, colback=white, sharp corners, width=\textwidth, boxrule=0.5mm]
+\textbf{Définition :}\\
+Soit $n \in \n^*$. On dit que la variable aléatoire $X$ suit la $\textbf{loi uniforme}$ sur $\{1,2,...,n\}$ et on note $X \sim \mathcal{U} (\{1,2,...,n\})$ si $X$ prend ses valeurs dans $\{1,2,...,n\}$ et si pour tout $k \in \{1,2,...,n\}$, $\prob (X=k) = 1/n$. 
+\end{tcolorbox}
+
+On pose $n=19$. Soit $X \sim \mathcal{U} (\{1,2,...,n \})$ . \\
+
+\textbf{1/} Calculer $\E (X)$. \\ 
+
+\textbf{2/} On admet que $\sum_{k=1}^n k^2= \frac{n(n+1)(2n+1)}{6}$. Calculer $\mathbb{V}(X)$. \\
+
+\end{document}
