@@ -1,7 +1,7 @@
-\documentclass{article}
+\documentclass[5pt]{article}
 \usepackage{graphicx}
 \usepackage{amsmath, amssymb}
-\usepackage[left=2cm, right=2cm, top=3cm, bottom=3cm]{geometry}
+\usepackage[left=2.5cm, right=2.5cm, top=3cm, bottom=3cm]{geometry}
 \usepackage{hyperref}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
@@ -12,7 +12,6 @@
 \newcommand{\f}{\mathcal{F}}
 
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{10pt}
 
 \title{Interrogation 2 \\
 Outils Mathématiques}
@@ -22,19 +21,19 @@ Outils Mathématiques}
 \begin{document}
 \maketitle
 
-\textbf{Attention :} Le sujet est long. Il n'est pas nécessaire de traiter tous les exercices pour obtenir la note maximale. Vous pouvez traiter les exercices dans l'ordre que vous souhaitez. Il est en revanche primordial que les calculs soient justes et que chaque affirmation soit justifiée. Commencez par traiter les exercices qui vous paraissent les plus simples.
+\textbf{Attention :} Le sujet est long. Il n'est pas nécessaire de traiter tous les exercices pour obtenir la note maximale. Vous pouvez traiter les exercices dans l'ordre que vous souhaitez. Il est primordial que les calculs soient justes et que chaque affirmation soit justifiée. Commencez par traiter les exercices qui vous paraissent les plus simples.
 
 \section*{Exercice 1 (Loi géométrique)}
 
 \begin{tcolorbox}[colframe=gray!50, colback=white, title=Rappels, fonttitle=\bfseries,
   boxrule=0.5pt, arc=0mm]
 \begin{itemize}
-    \item On dit que la variable aléatoire $X$ suit la \textbf{loi géométrique} de paramètre $p \in ]0,1[$ et on note $X \sim \mathcal{G}(p)$ si $X$ prend ses valeurs dans $\mathbb{N}^*$ et si pour tout $k \in \mathbb{N}^*$, 
+    \item On dit qu'une variable aléatoire $X$ suit la \textbf{loi géométrique} de paramètre $p \in \ ]0,1[$ et on note $X \sim \mathcal{G}(p)$ si $X$ prend ses valeurs dans $\mathbb{N}^*$ et si pour tout $k \in \mathbb{N}^*$, 
     \[
     \prob(X = k) = (1-p)^{k-1} p.
     \]
 
-    \item On rappelle l'\textbf{identité binomiale}. Pour $n_0 \in \mathbb{N}$ et $x \in ]-1,1[$, on a :
+    \item On rappelle l'\textbf{identité binomiale}. Pour $n_0 \in \mathbb{N}$ et $x \in \ ]-1,1[$, on a :
     \[
     \sum_{k=n_0}^{+\infty} \binom{k}{n_0} x^{k - n_0} = \frac{1}{(1 - x)^{n_0 + 1}}.
     \]
@@ -53,9 +52,9 @@ Soit $p=0{,}34$. Soit $X \sim \mathcal{G}(p)$.
 
 Calculer les intégrales suivantes.
 
-\textbf{1.} $I=\int_0^1 x \ln (x+1) dx$ \ \ \ \ \ \textbf{2.} $J=\int_0^{\frac{\pi}{7}} \sin (7x) dx$ \ \ \ \ \ \textbf{3.} $K = \int_{- \infty}^{+ \infty} 2x \exp{-(x^2(1+x^2))}dx$
+\textbf{1.} $I=\int_0^1 x \ln (x+1) dx$ \ \ \ \ \ \textbf{2.} $J=\int_0^{\frac{\pi}{7}} \sin (7x) dx$ \ \ \ \ \ \textbf{3.} $K = \int_{- \infty}^{+ \infty} 2x \exp{\left(-x^2(1+x^2) \right)}dx$
 
-\textbf{4.} $L=\int_0^1 x \exp{(-x^2/2) x} dx$ \ \ \ \ \ \textbf{5.} $M=\int_0^{\pi} x \cos(x) dx$ \ \ \ \ \ \textbf{6.} $N = \int_0^1 x \exp{(x)} dx$
+\textbf{4.} $L=\int_0^1 x \exp{(-x^2/2)} dx$ \ \ \ \ \ \textbf{5.} $M=\int_0^{\pi} x \cos(x) dx$ \ \ \ \ \ \textbf{6.} $N = \int_0^1 x \exp{(x)} dx$
 
 \section*{Exercice 3 (Équations différentielles en vrac)}
 
@@ -69,7 +68,7 @@ Résoudre les équations différentielles suivantes.
 
 \section*{Exercice 4 (Régression linéaire)}
 
-Soient $X$ et $Y$ deux variables aléatoires telles que $\E (X)=5$, $\E(X^2) = 7$, $\E (Y)=2$ et $\E (XY) =5$. 
+Soient $X$ et $Y$ deux variables aléatoires telles que $\E (X)=5$, $\E(X^2) = 7$, $\E (Y)=2$, $\E(Y^2) = 3$ et $\E (XY) =5$. 
 
 \textbf{1.} Calculer la droite de régression linéaire de $Y$ par rapport à $X$.
 
@@ -96,6 +95,32 @@ avec $a, A >0$ et $x_0 \in \mathbb{R}$.\\
 
 Calculer $A$ de sorte que $\int_{-\infty}^{+ \infty} f(x) dx = 1$. L'expression de $A$ fera intervenir $a$. \\
 \textit{Indication : On admettra qu'une primitive de la fonction $x \mapsto \frac{1}{1+x^2}$ définie sur $\mathbb{R}$ est la fonction $\arctan$ et que $\arctan(x) \xrightarrow[x \to -\infty]{} -\frac{\pi}{2}$, $\arctan(x) \xrightarrow[x \to +\infty]{} \frac{\pi}{2}$}.
+
+\section*{Exercice 7 (Pivot de Gauss)}
+
+Montrer que les matrices suivantes sont inversibles et calculer leurs inverses via la méthode du pivot de Gauss.
+
+
+\[
+\textbf{1. } A = \begin{pmatrix}
+1 & 0 & 2 \\
+0 & -1 & 1 \\
+1 & -2 & 0
+\end{pmatrix}
+\quad \quad
+\textbf{2. } B = \begin{pmatrix}
+0 & 1 & 1 \\
+-1 & 2 & 1 \\
+1 & -1 & -2
+\end{pmatrix}
+\quad
+\textbf{3. } C = \begin{pmatrix}
+2 & -1 & 0 \\
+1 & 0 & 3 \\
+-2 & 1 & 1
+\end{pmatrix}
+\]
+
 
 
 \end{document}
